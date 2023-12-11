@@ -1,4 +1,5 @@
-<form *ngIf="!cad">
+<ion-button (click)="logout()" *ngIf="logado">LogOut</ion-button>
+<form *ngIf="!cad && !logado">
   <h1>Formulário de Login</h1>
   <ion-input label-placement="floating" label="email" fill="outline" placeholder="insira seu email" #email></ion-input>
   <ion-input label="senha" type="password" label-placement="floating" fill="outline" placeholder="insira sua senha" #senha>

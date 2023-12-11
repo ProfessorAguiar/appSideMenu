@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -8,8 +8,8 @@ import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 export class LoginFormComponent implements OnInit {
   cad: boolean = false
   mensagem: string = ''
-
-  isToastOpen = false;
+  logado: boolean = false
+  isToastOpen = false
 
   setOpen(isOpen: boolean) {
     this.isToastOpen = isOpen;
@@ -25,8 +25,8 @@ export class LoginFormComponent implements OnInit {
     } else {
       this.mensagem = 'Usuário cadastrado com sucesso!'
       this.setOpen(true)
-      this.cad=!this.cad
-      
+      this.cad = !this.cad
+
       createUserWithEmailAndPassword(this.auth, email, senha)
         .then((userCredential) => {
           // Signed up 
@@ -43,10 +43,27 @@ export class LoginFormComponent implements OnInit {
   }
 
   Logar(email: any, senha: any) {
-    console.log(`Usuário: ${email} logado com senha: ${senha} `)
+    signInWithEmailAndPassword(this.auth, email, senha)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user.email)
+        this.mensagem = `Usuário: ${user.email} logado com sucesso!`
+        this.setOpen(true)
+        this.logado = !this.logado
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   }
 
-  constructor(private auth:Auth) { }
+  logout() {
+    this.mensagem = 'LogOut efetuado com sucesso!'
+    this.setOpen(true)
+    this.logado = !this.logado
+  }
+
+  constructor(private auth: Auth) { }
 
   ngOnInit() { }
 
