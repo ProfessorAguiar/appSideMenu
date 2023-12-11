@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from '@angular/fire/auth';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -10,7 +10,7 @@ export class LoginFormComponent implements OnInit {
   mensagem: string = ''
   logado: boolean = false
   isToastOpen = false
-
+  user:any={nome:'',foto:''}
   setOpen(isOpen: boolean) {
     this.isToastOpen = isOpen;
   }
@@ -61,8 +61,28 @@ export class LoginFormComponent implements OnInit {
     this.mensagem = 'LogOut efetuado com sucesso!'
     this.setOpen(true)
     this.logado = !this.logado
+    this.logOutComGoogle()
   }
-
+  loginComGoogle() {
+    const provider = new GoogleAuthProvider()
+    signInWithPopup(this.auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        this.mensagem = `Usuário: ${result.user.displayName} logado com sucesso!`
+        this.user.nome=result.user.displayName
+        this.user.foto=result.user.photoURL
+        this.setOpen(true)
+        this.logado = !this.logado
+      }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      });
+  }
+  logOutComGoogle(){
+    return signOut(this.auth)
+  }
   constructor(private auth: Auth) { }
 
   ngOnInit() { }
