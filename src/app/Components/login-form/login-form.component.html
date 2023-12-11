@@ -15,7 +15,13 @@
     #senha></ion-input>
   <ion-input label="Repita sua senha" type="password" label-placement="floating" fill="outline"
     placeholder="insira novamente sua senha" #RpSenha></ion-input>
-  <p>{{mensagem}}</p>
+    
   <ion-button expand="block" (click)="cadUser(email.value, senha.value, RpSenha.value)">Cadastrar</ion-button>
   <p>Já é cadastrado? <a (click)="cad=!cad">fazer login</a></p>
 </form>
+<ion-toast
+    [isOpen]="isToastOpen"
+    message={{mensagem}}
+    [duration]="5000"
+    (didDismiss)="setOpen(false)"
+  ></ion-toast>
