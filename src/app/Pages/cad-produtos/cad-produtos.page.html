@@ -1,4 +1,37 @@
 <ion-content>
-  <ion-input type="file" (change)="carregarFoto($event)" label="Produto" label-placement="floating" fill="solid" placeholder="Selecione a imagem do produto"></ion-input>
-  <ion-button>Cadastrar</ion-button>
+  <ion-input label="Nome do Produto" label-placement="floating" fill="solid"
+    placeholder="Digite o nome do produto"></ion-input>
+
+  <ion-input label="Descrição" label-placement="floating" fill="solid"
+    placeholder="Insira uma breve descrição do produto"></ion-input>
+
+  <ion-input [maskito]="PrecoMask" [maskitoElement]="maskPredicate" label="Preço" label-placement="floating"
+    fill="solid" placeholder="Insira o preço do produto"></ion-input>
+
+  <ion-input type="number" label="Quantidade" label-placement="floating" fill="solid"
+    placeholder="Entre com a QTD do produto em estoque"></ion-input>
+
+  <ion-button id="open-modal">Inserir Imagem</ion-button>
+
+
+  <ion-button>Cadastrar Produto</ion-button>
+
 </ion-content>
+
+<ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+  <ng-template>
+      <ion-content>
+      <div class="block">Selecione a imagem do produto
+
+        <ion-input type="file" (change)="carregarFoto($event)" label="Imagem" label-placement="floating" fill="solid"
+          placeholder="Selecione a imagem do produto"></ion-input>
+
+        <ion-card *ngFor="let img of images">
+          <img src={{img}} />
+        </ion-card>
+
+      </div>
+
+    </ion-content>
+    </ng-template>
+</ion-modal>
