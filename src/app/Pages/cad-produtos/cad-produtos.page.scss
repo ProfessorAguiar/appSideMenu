@@ -82,6 +82,8 @@ ion-input{
   background-color: rgb(255, 255, 255);
   height: 5px;
   padding: 0;
+  text-align: left;
+  --padding-start: 15px;
 }
 
 ion-thumbnail{
@@ -90,4 +92,18 @@ ion-thumbnail{
 ion-button{
   background-color: #fff;
   border-radius: 15px;
+}
+.images{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center; 
+}
+ion-card{
+  width: 80px;
+  margin: 4px;
+}
+ion-item{
+  margin: 8px;
 }
