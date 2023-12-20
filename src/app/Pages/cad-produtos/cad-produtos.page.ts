@@ -10,7 +10,9 @@ import { v4 as uuidv4 } from 'uuid';
 export class CadProdutosPage implements OnInit {
   foto: any
   imageRef: any
-  images:any=[];
+  images:any=[]
+  imgSrc:any
+  isImg:boolean=false
   constructor(private storage: Storage) { }
   ngOnInit() {
     this.listarProdutos()
@@ -18,7 +20,8 @@ export class CadProdutosPage implements OnInit {
   }
   carregarFoto(e: any) {
     this.foto = e.target.files[0]
-    this.imageRef = ref(this.storage, `Produtos/${this.foto.name}`)
+    const newName=uuidv4(this.foto.name)
+    this.imageRef = ref(this.storage, `Produtos/${newName}`)
     uploadBytes(this.imageRef, this.foto)
   }
 
@@ -28,6 +31,11 @@ export class CadProdutosPage implements OnInit {
     console.log(b)
   }
 
+  selectImage(img:any, modal:any){
+    this.imgSrc=img
+    this.isImg=true
+    modal.dismiss()//fechar modal
+  }
 
   listarProdutos() {
     const listRef = ref(this.storage, 'Produtos');
