@@ -68,8 +68,8 @@
     <ion-content>
       <div class="block">
         <h3>Selecione a imagem do produto</h3>
-
-        <input type="file" (change)="carregarFoto($event)" label="Imagem" label-placement="floating" fill="solid"
+        <button (click)="hideShow()">Selecione a imagem</button>
+        <input id="cadImg" type="file" (change)="carregarFoto($event)" label="Imagem" label-placement="floating" fill="solid"
           placeholder="Selecione a imagem do produto"/>
 
         <div class="images">

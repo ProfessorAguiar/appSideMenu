@@ -68,5 +68,8 @@ export class CadProdutosPage implements OnInit {
     const document = doc(collection(this.firestore, 'Produtos'));
     return setDoc(document, produto);
   }
+  hideShow(){
+    document.getElementById('cadImg')?.click()
+  }
 
 }
