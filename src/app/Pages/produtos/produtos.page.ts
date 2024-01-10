@@ -7,13 +7,7 @@ import { getStorage, ref, listAll, Storage, getDownloadURL } from '@angular/fire
   styleUrls: ['./produtos.page.scss'],
 })
 export class ProdutosPage implements OnInit {
-  produtos:any = [{
-    nome:'',
-    descricao:'',
-    preco:'',
-    qtd:'',
-    image:''
-  }]
+  produtos:any = []
   constructor(private storage:Storage, private firestore:Firestore) { }
   ngOnInit() {
     this.listarBanco()
