@@ -9,6 +9,15 @@ import { getStorage, ref, listAll, Storage, getDownloadURL } from '@angular/fire
 export class EditProdutosPage implements OnInit {
   isToastOpen = false;
   produtos: any = []
+  isModalOpen = false;
+  produto={
+    id:'',
+    nome:'',
+    descricao:'',
+    preco:'',
+    qtd:'',
+    image:''
+  }
   constructor(private storage: Storage, private firestore: Firestore) { }
   ngOnInit() {
     this.listarBanco()
@@ -34,8 +43,13 @@ export class EditProdutosPage implements OnInit {
     }, 2000);
   }
 
-  CarregaProdutos(id: any, nome: any, descricao: any, preco: any, qtd: any, image:any){
-    
+  CarregaProdutos(isOpen: boolean,id: any, nome: any, descricao: any, preco: any, qtd: any, image:any){
+    this.isModalOpen = isOpen;
+    this.produto.nome=nome
+    this.produto.descricao=descricao
+    this.produto.preco=preco
+    this.produto.qtd=qtd
+    this.produto.image=image   
   }
 
   EditarProduto(nomeProduto:any, descProduto:any, precoProduto:any, qtdProduto:any) {
