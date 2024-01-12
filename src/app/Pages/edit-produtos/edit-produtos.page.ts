@@ -9,30 +9,6 @@ import { getStorage, ref, listAll, Storage, getDownloadURL } from '@angular/fire
 export class EditProdutosPage implements OnInit {
   isToastOpen = false;
   produtos: any = []
-
-  public alertButtons = ['OK'];
-  public alertInputs = [
-    {
-      placeholder: 'Name',
-    },
-    {
-      placeholder: 'Nickname (max 8 characters)',
-      attributes: {
-        maxlength: 8,
-      },
-    },
-    {
-      type: 'number',
-      placeholder: 'Age',
-      min: 1,
-      max: 100,
-    },
-    {
-      type: 'textarea',
-      placeholder: 'A little about yourself',
-    },
-  ];
-  
   constructor(private storage: Storage, private firestore: Firestore) { }
   ngOnInit() {
     this.listarBanco()
@@ -56,6 +32,14 @@ export class EditProdutosPage implements OnInit {
       this.produtos = []
       this.listarBanco()
     }, 2000);
+  }
+
+  CarregaProdutos(id: any, nome: any, descricao: any, preco: any, qtd: any, image:any){
+    
+  }
+
+  EditarProduto(nomeProduto:any, descProduto:any, precoProduto:any, qtdProduto:any) {
+    console.log('produto Editado')
   }
 
 }
