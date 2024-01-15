@@ -8,16 +8,31 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-item *ngFor="let p of produtos">
-          <ion-thumbnail slot="start">
-            <img src={{p.image}} />
-          </ion-thumbnail>
-          <ion-label class="nome">{{p.nome}}</ion-label>
-          <ion-label>{{p.preco}}</ion-label>
-          <ion-label> <ion-button (click)="CarregaProdutos(true,p.id, p.nome, p.descricao, p.preco, p.qtd, p.image)"><ion-icon name="create-outline"></ion-icon></ion-button>
+          <ion-grid>
+            <ion-row *ngFor="let p of produtos">
+              <ion-col>
+                <ion-thumbnail slot="start">
+                  <img src={{p.image}} />
+                </ion-thumbnail>
+              </ion-col>
+              <ion-col>
+                <ion-label class="nome">{{p.nome}}</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label>{{p.preco}}</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label> <ion-button (click)="CarregaProdutos(true,p.id, p.nome, p.descricao, p.preco, p.qtd, p.image)"><ion-icon name="create-outline"></ion-icon></ion-button> </ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+          
+          
+          
+          
            
-          </ion-label>
-        </ion-item>
+         
       </ion-list>
     </ion-card-content>
   </ion-card>
@@ -39,14 +54,17 @@
         <h3>Editar Produto</h3>
 
         <form>
-          <ion-input fill="outline" value={{produto.nome}} #productName> <ion-icon slot="start" name="lock-closed"
-              aria-hidden="true"></ion-icon></ion-input>
-          <ion-input fill="outline" type="textarea" value={{produto.descricao}} #productDescript></ion-input>
+          <label>Produto:</label>
+          <ion-input fill="outline" value={{produto.nome}} #productName></ion-input>
+          <label>Descrição:</label>
+          <ion-textarea [autoGrow]="true" fill="outline" value={{produto.descricao}} #productDescript></ion-textarea>
+          <label>Valor:</label>
           <ion-input fill="outline" value="R$ {{produto.preco}}" #preco></ion-input>
+          <label>Quantidade:</label>
           <ion-input fill="outline" type="number" value={{produto.qtd}} #Qtd></ion-input>
+          <label>Imagem:</label>
           <ion-img src={{produto.image}}></ion-img>
-          <ion-button fill="outline" expand="block" id="open-modal"><ion-thumbnail><img
-                src="../../../assets/logos/googleLogo.png"></ion-thumbnail>Foto do produto</ion-button>
+          <ion-button fill="outline" expand="block" id="open-modal"><ion-thumbnail><ion-icon name="camera-outline"></ion-icon></ion-thumbnail>Foto do produto</ion-button>
           <!-- <img *ngIf="isImg" src={{imgSrc}} class="imgSrc"> -->
           <ion-button expand="block"
             (click)="EditarProduto(productName.value,productDescript.value,preco.value,Qtd.value)">Editar</ion-button>
