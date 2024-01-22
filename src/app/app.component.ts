@@ -7,7 +7,7 @@ import { Auth, GoogleAuthProvider, signInWithPopup, signOut } from '@angular/fir
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Home', url: '/folder/home', icon: 'home' },
+    { title: 'Home', url: '/home', icon: 'home' },
     { title: 'Produtos', url: '/produtos', icon: 'bag-handle' },
     { title: 'Promoções', url: '/folder/promocoes', icon: 'pricetags' },
     { title: 'Lojas', url: '/folder/lojas', icon: 'storefront' },

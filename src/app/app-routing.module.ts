@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: 'delete-produtos',
     loadChildren: () => import('./Pages/delete-produtos/delete-produtos.module').then( m => m.DeleteProdutosPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./Pages/home/home.module').then( m => m.HomePageModule)
   }
 
 ];
